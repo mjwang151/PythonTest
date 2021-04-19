@@ -27,17 +27,24 @@ time.sleep(2)
 
 titleCount = int(browser.find_elements_by_class_name('pager')[0].text.split('/')[1])
 for i in range(1, 6):
-    print('开始回答第'+str(i)+'道题目。')
+    print('开始回答第' + str(i) + '道题目。')
     time.sleep(1)
     browser.find_elements_by_class_name('tips')[0].click()
-    # time.sleep(1)
+    # 点击显示提示信息
     browser.find_elements_by_class_name('line-feed')
-    tips = browser.find_elements_by_class_name('line-feed')[0].find_elements_by_xpath("//font")
-    tips_msg = browser.find_elements_by_class_name('line-feed')[0].text
+    browser.find_elements_by_class_name('line-feed')[0].find_elements_by_xpath("//font")
     tips_tmp = []
-    for tip in tips:
-        print('提示信息:' + tip.text)
-        tips_tmp.append(tip.text)
+    tips = browser.find_elements_by_class_name('line-feed')[0].find_elements_by_xpath("//font")
+    for ji in range(len(browser.find_elements_by_class_name('line-feed')[0].find_elements_by_xpath("//font"))):
+        print(str(ji) + ':' + str(len(browser.find_elements_by_class_name('line-feed')[0].find_elements_by_xpath("//font"))))
+        tips_tmp.append(browser.find_elements_by_class_name('line-feed')[0].find_elements_by_xpath("//font")[ji].text)
+    # for tip in tips:
+    #     tips_tmp.append(tip.text)
+    #     print('提示信息:' + tip.text)
+    print('缓存到的提示信息:' + str(tips_tmp))
+    time.sleep(1)
+    # 点击隐藏提示信息
+    tips_msg = browser.find_elements_by_class_name('line-feed')[0].text
     browser.find_elements_by_class_name('tips')[0].click()
     tiMuType = browser.find_elements_by_class_name('q-header')[0].text
     if tiMuType == '多选题':
@@ -58,12 +65,11 @@ for i in range(1, 6):
         ansCount = 0
         xXian = browser.find_elements_by_class_name('q-answer')
         for xx in xXian:
-            for tip in tips:
-                print('提示为：' + tip.text + xx.text[3:])
-                if tip.text == '':
+            for tip in tips_tmp:
+                if tip == '':
                     continue
-                if tip.text == xx.text[3:]:
-                    print('单选题答案是:' + xx.text + '，提示为：' + tip.text)
+                if tip == xx.text[3:]:
+                    print('单选题答案是:' + xx.text + '，提示为：' + tip)
                     xx.click()
                     ansCount += 1
                     break
@@ -74,20 +80,14 @@ for i in range(1, 6):
         xXian = browser.find_elements_by_class_name('blank')
         x = 0
         for xx in xXian:
-            if len(tips) < x:
+            if len(tips_tmp) <= x:
                 xx.send_keys('不知道')
             else:
-                xx.send_keys(tips[x].text)
+                xx.send_keys(tips_tmp[x])
             x += 1
     print('答题结束，准备跳转...')
     browser.find_elements_by_class_name('ant-btn')[0].click()
     isYesVal = browser.find_elements_by_class_name('answer')
     if len(isYesVal) > 0:
         print('此题答错，正确答案为：' + browser.find_elements_by_class_name('answer')[0].text)
-        browser.find_elements_by_class_name('ant-btn')[0].click()
-
-
-
-
-
-
+        # browser.find_elements_by_class_name('ant-btn')[0].click()
