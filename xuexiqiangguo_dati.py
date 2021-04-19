@@ -3,6 +3,7 @@ import time
 
 from selenium import webdriver
 
+# taskkill /F /im chromedriver.exe
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("excludeSwitches", ['enable-automation'])
@@ -11,6 +12,10 @@ browser = webdriver.Chrome(options=chrome_options)
 
 # 访问网页
 browser.get("https://pc.xuexi.cn/points/login.html?ref=https%3A%2F%2Fwww.xuexi.cn%2F")
+browser.maximize_window()
+js = "var q=document.documentElement.scrollTop=900"
+browser.execute_script(js)
+
 time.sleep(10)
 titles = browser.find_elements_by_class_name('linkItem')[1].click()
 time.sleep(1)
@@ -88,3 +93,6 @@ for i in range(1, 6):
     if len(isYesVal) > 0:
         print('此题答错，正确答案为：' + browser.find_elements_by_class_name('answer')[0].text)
         browser.find_elements_by_class_name('ant-btn')[0].click()
+
+
+
