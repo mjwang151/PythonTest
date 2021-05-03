@@ -13,6 +13,7 @@ headers = {
     'User-Agent': 'Chrome/90.0.4430.93'
 }
 url2 = 'http://wjsou.com/s2.jsp?q=%E5%AE%89%E7%A1%95%E4%BF%A1%E6%81%AF'
+url3 = 'https://www.pan131.com/yun/安硕信息/?pn=1'
 conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', password='root', database='sys', charset='utf8')
 cur = conn.cursor()
 
