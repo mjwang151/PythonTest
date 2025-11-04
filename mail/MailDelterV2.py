@@ -255,16 +255,23 @@ def main():
 
     # 发件人列表
     sender_list = [
-        'amarMonitorFullLink',
-        'amarMonitorFullLink@mail.amarsoft.com',
-        'cdh_crdc@amarsoft.com',
+        # 'llzhang2',
+        # 'amarMonitorFullLink@mail.amarsoft.com',
+        # 'amarMonitorFullLink'
+        # 'cdh_crdc@amarsoft.com',
         'cdh_dev@amarsoft.com',
-        'llzhang2@amarsoft.com'
+        # 'llzhang2@amarsoft.com',
+        # 'amarcr@amarsoft.com',
+        'cdh_dev'
     ]
 
     # 日期范围
-    start_date = datetime.strptime('2021-01-01', "%Y-%m-%d")
-    end_date = datetime.strptime('2022-01-01', "%Y-%m-%d")
+    start_date = datetime.strptime('2020-06-01', "%Y-%m-%d")
+    end_date = datetime.strptime('2025-06-13', "%Y-%m-%d")
+    # start_days_ago = datetime.now() - timedelta(days=3)
+    # after_days_ago = datetime.now() + timedelta(days=1)
+    # start_date = datetime.strptime(start_days_ago.strftime("%Y-%m-%d"), "%Y-%m-%d")
+    # end_date = datetime.strptime(after_days_ago.strftime("%Y-%m-%d"), "%Y-%m-%d")
 
     # 批次大小（可根据服务器性能调整）
     BATCH_SIZE = 50  # 保守的批次大小，避免超时

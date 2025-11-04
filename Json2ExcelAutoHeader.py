@@ -3,7 +3,7 @@
 import pandas as pd
 import json
 # 输入文件格式为 [{},{}]这种格式
-with open('/Volumes/S1/tmp/a.txt', 'r', encoding='utf-8') as f:
+with open('/Volumes/S1/tmp/1.json', 'r', encoding='utf-8') as f:
     records_data = json.load(f)
 
 excel_file = '/Volumes/S1/tmp/output.xlsx'
